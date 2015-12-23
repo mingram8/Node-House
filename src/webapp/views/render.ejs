@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/login.css" type="text/css">
+    <link rel="stylesheet" href="js/angular-color-picker.css">
+    <link rel="stylesheet" href="https://jqueryui.com/jquery-wp-content/themes/jquery/css/base.css?v=1">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/angular-toggle-switch.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+    <script src="js/angular-color-picker.js"></script>
+    <script src="js/angular-toggle-switch.min.js"></script>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/directives/enter.js"></script>
+    <script src="js/directives/longpress.js"></script>
+    <script src="js/controllers/PlayController.js"></script>
+
+    <title><%= title %></title>
+</head>
+<script>
+    var url = '<%= url %>'
+</script>
+<body ng-app="houseApp" ng-controller="PlayController">
+URL:::::: <%=url%>
+<audio ng-src={{url}} id="myMediaElementID" controls preload="auto" autoplay>
+</audio>
+</body>
+</html>

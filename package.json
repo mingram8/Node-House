@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "bcrypt": "^0.8.5",
+    "bcrypt-nodejs": "0.0.3",
+    "binaryjs": "^0.2.1",
+    "body-parser": "^1.14.1",
+    "connect-flash": "^0.1.1",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "mongodb": "^2.1.0",
+    "mongoose": "^4.2.10",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "playmusic": "^2.1.1",
+    "wav": "^1.0.0",
+    "yql": "^1.0.2"
+  }
+}

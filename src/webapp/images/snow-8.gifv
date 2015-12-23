@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+    <head>
+        <title>OC: Peaceful snow</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <meta name="copyright" content="Copyright 2015 Imgur, Inc." />
+        <meta id="viewport" name="viewport" content="width=720, user-scalable=yes" />
+        <link rel="stylesheet" type="text/css" href="//s.imgur.com/min/sharePlayer.css?1449861665" />
+
+        <style type="text/css">
+            #content, #video {
+                width:  720px;
+                height: 405px;
+            }
+            
+            #chrome, #progress {
+                width: 720px;
+            }
+        </style>
+        
+        <link rel="alternate" type="application/json+oembed" href="http://api.imgur.com/oembed.json?url=http://i.imgur.com/rmfU76B.gifv" title="OC: Peaceful snow" />
+        <link rel="alternate" type="application/xml+oembed" href="http://api.imgur.com/oembed.xml?url=http://i.imgur.com/rmfU76B.gifv" title="OC: Peaceful snow" />
+                
+        <link rel="canonical"                 href="http://i.imgur.com/rmfU76B.gifv" />
+
+        <meta property="og:site_name"         content="Imgur" />
+        <meta property="og:url"               content="http://i.imgur.com/rmfU76B.gifv" />
+        <meta property="og:title"             content="OC: Peaceful snow" />
+        <meta property="og:type"              content="video.other" />
+        
+                <meta property="og:image"             content="http://i.imgur.com/rmfU76Bh.jpg" />
+        <meta property="og:image:width"       content="720" />
+        <meta property="og:image:height"      content="405" />
+        <meta property="og:description"       content="It was snowing when I woke up, so I grabbed my camera and made this. I hope yah like it :)
+" />
+        <meta property="og:video"             content="http://s.imgur.com/include/flash/gifplayer.swf?1444772065&amp;imgur_video=http://i.imgur.com/rmfU76B.mp4&amp;imgur_width=720&amp;imgur_height=405&amp;imgur_url=rmfU76B" />
+        <meta property="og:video:secure_url"  content="https://s.imgur.com/include/flash/gifplayer.swf?1444772065&amp;imgur_video=https://i.imgur.com/rmfU76B.mp4&amp;imgur_width=720&amp;imgur_height=405&amp;imgur_url=rmfU76B" />
+        <meta property="og:video:type"        content="application/x-shockwave-flash" />
+        <meta property="og:video:width"       content="500" />
+        <meta property="og:video:height"      content="281" />
+        <meta property="og:video"             content="http://i.imgur.com/rmfU76B.mp4" />
+        <meta property="og:video:secure_url"  content="https://i.imgur.com/rmfU76B.mp4" />
+        <meta property="og:video:type"        content="video/mp4" />
+        <meta property="og:video:width"       content="500" />
+        <meta property="og:video:height"      content="281" />
+        
+        
+        <meta name="twitter:site"                       content="@imgur" />
+        <meta name="twitter:creator"                    content="@imgur" />
+        <meta name="twitter:domain"                     content="imgur.com" />
+        <meta name="twitter:app:id:googleplay"          content="com.imgur.mobile" />
+        <meta name="twitter:card"                       content="player" />
+        <meta name="twitter:title"                      content="OC: Peaceful snow" />
+        <meta name="twitter:description"                content="It was snowing when I woke up, so I grabbed my camera and made this. I hope yah like it :)
+" />
+        <meta name="twitter:image"                      content="https://i.imgur.com/rmfU76Bh.jpg" />
+        <meta name="twitter:image:src"                  content="https://i.imgur.com/rmfU76Bh.jpg" />
+        <meta name="twitter:player"                     content="https://i.imgur.com/rmfU76B.gifv?twitter#t" />
+        <meta name="twitter:player:width"               content="720" />
+        <meta name="twitter:player:height"              content="405" />
+        <meta name="twitter:player:stream"              content="https://i.imgur.com/rmfU76B.mp4" />
+        <meta name="twitter:player:stream:content_type" content="video/mp4">
+        
+        <!--[if lte IE 8]><script type="text/javascript" src="//s.imgur.com/min/iepoly.js?1449861665"></script>
+<![endif]-->
+    </head>
+    <body id="body">
+        <div id="content">
+            <script type="text/javascript">
+                window.image        = 'rmfU76B';
+                window.image_size   = '24587587';
+                window.image_width  = '720';
+                window.image_height = '405';
+                window.cdn_url      = '//i.imgur.com';
+                    
+                if(navigator.userAgent.match(/Firefox/)) {
+                    document.body.className = document.body.className + ' firefox';
+                }
+            </script>
+            <div class="vid-container">
+                
+                
+                
+                <div class="post-image">
+    
+
+            <div class="video-container">
+            <script type="text/javascript">
+                var videoItem = {
+                    looping:  true,
+                    width:    720,
+                    height:   405,
+                    size:     24587587,
+                    gifUrl:   '//i.imgur.com/rmfU76B.gif',
+                    forceGif: false,
+                    hash:     'rmfU76B'
+                }
+            </script>
+            <video poster="//i.imgur.com/rmfU76Bh.jpg" preload="auto" autoplay="autoplay" muted="muted" loop="loop" webkit-playsinline></video>
+            <div class="video-elements">
+                <source src="//i.imgur.com/rmfU76B.webm" type="video/webm">
+                <source src="//i.imgur.com/rmfU76B.mp4" type="video/mp4">
+
+                <object style="width: 720px; height: 405px" type="application/x-shockwave-flash"
+                         data="//s.imgur.com/include/flash/gifplayer.swf?1444772065&amp;imgur_video=http://i.imgur.com/rmfU76B.mp4&amp;imgur_width=720&amp;imgur_height=405&amp;imgur_url=">
+                    <param name="movie" value="//s.imgur.com/include/flash/gifplayer.swf?1444772065&amp;imgur_video=http://i.imgur.com/rmfU76B.mp4&amp;imgur_width=720&amp;imgur_height=405" />
+                    <param name="allowscriptaccess" value="never" />
+                    <param name="flashvars" value="height=405&amp;width=720" />
+                    <param name="width" value="720" />
+                    <param name="height" value="405" />
+                    <param name="version" value="0" />
+                    <param name="scale" value="scale" />
+                    <param name="salign" value="tl" />
+                    <param name="wmode" value="opaque" />
+                </object>
+            </div>
+            <progress value="0" max="100" min="0"></progress>
+            <div class="video-loader"></div>
+            <script id="scriptrmfU76B" type="text/javascript" src="//s.imgur.com/min/imageViewerInline.js?1449861665"></script>
+
+        </div>
+    
+</div>
+
+            </div>
+            <script type="text/javascript">
+            var pixel_url = '//i.imgur.com/imageview.gif?a=rmfU76B&r=' + encodeURIComponent(document.referrer);
+            var pixel = document.createElement('img');
+            pixel.src = pixel_url;
+            </script>
+            
+            <div id="chrome">
+                <div class="icon">
+                    <a href="//imgur.com/rmfU76B"><img src="//i.imgur.com/favicon.ico" /></a>
+                </div>
+                <div class="imgur">
+                    <a href="//imgur.com/rmfU76B">Imgur</a>
+                </div>
+                <div class="controls">
+                    <a href="//imgur.com/download/rmfU76B">download</a>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <script type="text/javascript" src="//s.imgur.com/min/sharePlayer.js?1449861665"></script>
+
+    </body>
+</html>

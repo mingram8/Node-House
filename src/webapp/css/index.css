@@ -1,0 +1,282 @@
+body {
+    background: url('../images/snow-9.gif');
+    background-size: cover;
+    font: 14px/1.4 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;}
+
+.leftSide {
+    width: 50%;
+    float: left;
+}
+
+.rightSide {
+    width: 50%;
+    float: right;
+    text-align: right;
+
+    overflow:auto;
+}
+ui-slider .ui-slider-handle {
+    width: 40px;
+    height: 20px;
+}
+.ui-slider-handle {
+    width: 50px;
+    height: 50px;
+}
+.ui-slider-vertical .ui-slider-handle {
+    width:40px;
+    height:40px;
+}
+table {
+
+    float:right;
+    border-spacing: 10px;
+    border-collapse: separate;
+}
+br.small {
+    line-height: 5px;
+}
+.clock {
+    font-size:60px;
+}
+.folderImg {
+    width:15px;
+    float:left;
+}
+.slider {
+    margin: 0 10px;
+}
+.sliderColor {
+    background: url('../images/Hue.png') no-repeat top left;
+    background-size:cover;
+
+    margin: 0 10px;
+
+}
+
+.slider1 {
+    margin: 0 auto;
+}
+table {
+    border-spacing: 10px;
+    border-collapse: separate;
+
+}
+.folder {
+    position:absolute;
+    top:150px;
+    height:50%;
+    border: 3px solid #026cfe;
+    border-radius: 6px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    color: #86b9fe;
+    margin: 2px;
+    cursor: pointer;
+    background: -webkit-linear-gradient(#404143, #161616); /* For Safari 5.1 to 6.0 */
+    opacity: .9;
+    text-align: left;
+}
+.option {
+    width:100%;
+    border: 3px solid #026cfe;
+    border-radius: 6px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    color: #86b9fe;
+    margin: 2px;
+    cursor: pointer;
+    background: -webkit-linear-gradient(#404143, #161616); /* For Safari 5.1 to 6.0 */
+    opacity: .9;
+    text-align: center;
+    margin: 2px;
+
+}
+.temperature {
+    width: 90%;
+    height: 90%;
+    border: 3px solid #026cfe;
+    border-radius: 6px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    color: #86b9fe;
+    margin: 2px;
+    cursor: pointer;
+    background: -webkit-linear-gradient(#404143, #161616); /* For Safari 5.1 to 6.0 */
+    opacity: .9;
+    text-align:center;
+    /*color:#fff*/
+    /* width and height can be anything, as long as they're equal */
+}
+.stockTicker {
+    color:#86b9fe;
+    position:absolute;
+    height:40px;
+    background: -webkit-linear-gradient(#1470f7, #161616); /* For Safari 5.1 to 6.0 */
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+.toggle-switch {
+    height:30px;
+}
+.stock {
+    color:white;
+    font-size:20px;
+}
+#stocks {
+    position:relative;
+    left:2px;
+ }
+#seconds {
+    position:absolute;
+    top:15px;
+    left:15px;
+}
+#hours {
+    position:absolute;
+    top:15px;
+    left:15px;
+}
+#minutes {
+    position:absolute;
+    top:15px;
+    left:15px;
+}
+.temp {
+    font-size:30px;
+    cursor:pointer;
+}
+.tempe {
+    font-size:15px;
+    cursor:pointer;
+}
+.music {
+     font-size:15px;
+    cursor:pointer;
+}
+.ui-slider-vertical .ui-slider-handle {
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+    background: url('../images/handle.png') no-repeat;
+    background-size:cover;
+    font-weight: bold;
+    color: #1C94C4;
+    outline: none;
+    border:none;
+    left:-15px;
+}
+.musicSlider {
+    float:left;
+    position:relative;
+    left:70%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #333 #333 #777 #333;
+    border-radius: 25px;
+    width: 13px;
+    height: 100px;
+    background-color: #8e8d8d;
+    background: url('../images/bg-track.png') repeat top left;
+    box-shadow: inset 0 1px 5px 0px rgba(0, 0, 0, .5),
+    0 1px 0 0px rgba(250, 250, 250, .5);
+}
+    .houseButton {
+        width:200px;
+        height: 50px;
+        border: 3px solid #026cfe;
+        border-radius: 6px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+        color: #86b9fe;
+        margin: 2px;
+        cursor: pointer;
+        background: -webkit-linear-gradient(#404143, #161616); /* For Safari 5.1 to 6.0 */
+        opacity: .9;
+    }
+.houseButton-on {
+    width:200px;
+    height: 50px;
+    border: 3px solid #026cfe;
+    border-radius: 6px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    color: #86b9fe;
+    margin: 2px;
+    cursor: pointer;
+    background: -webkit-linear-gradient(#1470f7, #161616); /* For Safari 5.1 to 6.0 */
+    opacity: .9;
+}
+.houseButton:before {
+    content:'';
+    filter: blur(10px);
+}
+
+.search {
+    float:left;
+    width:70%;
+    height:70px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    font-size:40px;
+    webkit-filter: blur(10px) saturate(2);
+
+}
+#resultContainer {
+    width: 100%;
+    top:10px;
+    position: relative;
+    text-align:right;
+    overflow:auto;
+    max-height:90%;
+}
+#artistContainer {
+    background: rgba(255,255,255,0.6);
+    width:95%;
+    color:#026cfe;
+float:right;
+    overflow:auto;
+    max-height:90%;
+}
+.cent {
+    text-align:center;
+}
+.lef {
+    text-align:left;
+    margin:20px;
+}
+p {
+    text-align:left;
+    padding:3px;
+}
+#searchContainer {
+    background: rgba(255,255,255,0.2);
+    width:95%;
+    color:#026cfe;
+    float:right;
+    overflow:auto;
+    max-height:90%;
+}
+#albumContainer {
+    background: rgba(255,255,255,0.2);
+    width:95%;
+    color:#026cfe;
+    float:right;
+    overflow:auto;
+    max-height:90%;
+}
+.player {
+    width:95%;
+    float:right;
+
+
+}
+.resultTable {
+    color:#026cfe;
+    width:100%;
+    font-size:20px;
+    opacity:.8;
+    background: rgba(255,255,255,0.66);
+    margin: 0 auto;
+    cursor: pointer;
+}
+.resultTable tr:nth-child(even) {
+    background-color: #000000;
+    color:#026cfe;
+}

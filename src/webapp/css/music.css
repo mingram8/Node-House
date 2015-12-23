@@ -1,0 +1,66 @@
+body {
+   background-color:black;
+    font: 14px/1.4 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+}
+.search {
+    width:80%;
+    height:70px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    font-size:40px;
+    webkit-filter: blur(10px) saturate(2);
+
+}
+.searchHolder {
+    width:100%;
+    margin: 10px auto;
+    position:absolute;
+    text-align:center;
+}
+#resultContainer {
+    width: 100%;
+    top:100px;
+    position: relative;
+    margin: 10px auto;
+    text-align:center;
+    overflow:auto;
+    max-height:100%;
+}
+#artistContainer {
+    background: rgba(255,255,255,0.66);
+    width:80%;
+    margin:0 auto;
+
+}
+#searchContainer {
+    background: rgba(255,255,255,0.66);
+    width:80%;
+    margin:0 auto;
+}
+#albumContainer {
+    background: rgba(255,255,255,0.66);
+    width:80%;
+    margin:0 auto;
+}
+.player {
+    width: 100%;
+    top:100px;
+    position: absolute;
+    margin: 10px auto;
+    text-align:center;
+    overflow:auto;
+    max-height:400px;
+}
+.resultTable {
+    color:#1DC8BD;
+     width:100%;
+    font-size:40px;
+    opacity:.8;
+    background: rgba(255,255,255,0.66);
+margin: 0 auto;
+}
+.resultTable tr:nth-child(even) {
+    background-color: #000000;
+    color:#1DC8BD;
+}
