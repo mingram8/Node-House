@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 
-// Define our user schema
+/**
+ * This is the last piece of the puzzle. I need this to be loaded from the config file.
+ * 
+ */
 var HouseSchema = new mongoose.Schema({
     name: {type: String,
         unique: true,
