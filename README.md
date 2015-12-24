@@ -35,7 +35,7 @@ sed -ir "s/$needle/\xb8\x01\x00\x00\x00/" /usr/bin/vlc</p>
 <h2>How to do it</h2>
 <p><b>You have to use Linux on the server it runs on</b>. I really don't like Windows, especially as a server, and don't feel like dealing with it. You could probably get it running on OSX with some tuning. You have to have MongoDB installed and running. Let it sit on the default port. If you want to lock it down (which you should) then add credentials to config/express.js. I don't have any in the default app. This is how all of the clients are aware of the current state of the house.</p>
  <p>VLC is what plays the music. So, you need that downloaded. You could use something like omxplayer, but you lose
- http server support, so pause/play will not work. If that isn't a big deal then go ahead and find+replace cvlc with player of your choice. Also, change spawn.spawn('cvlc', ['-I', 'http', req.url, 'localhost:8080']); to spawn.spawn('omxplayer', [req.url]); and it should work</p>
+ http server support, so pause/play will not work. If that isn't a big deal then go ahead and find+replace cvlc in /src/node/controllers/playMusic.controller.js with a player of your choice. Also, change spawn.spawn('cvlc', ['-I', 'http', req.url, 'localhost:8080']); to spawn.spawn('omxplayer', [req.url]); and it should work. [omxplayer can be another player]</p>
  
  <h4>Big BIG thing</h4>
  <p>The house Schema isn't loaded from the config file, SO you will have to modify src/node/models/house.model.js to reflect
