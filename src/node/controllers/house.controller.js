@@ -137,9 +137,10 @@ exports.volumeDown = function (req, res) {
  */
 exports.volumeSet = function (req, res) {
     spawn.exec("amixer sset 'Master' " + req.params.volume + "%");
-    var json = exports.createBlankHouse();
-    json.volume = req.params.volume;
-    exports.updateHouse(json);
+    House.findOne({name: 'house'}, function (err, house) {
+        house.volume = req.params.volume;
+        exports.updateHouse(house);
+    });
     res.send('success');
 }
 

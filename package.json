@@ -10,6 +10,7 @@
     "express-session": "^1.12.1",
     "mongodb": "^2.1.0",
     "mongoose": "^4.2.10",
+    "node-dash-button": "^0.2.5",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "playmusic": "^2.1.1",

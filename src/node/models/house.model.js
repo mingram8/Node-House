@@ -1,72 +1,28 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    config = require('../../../config/main.config');
 
 /**
  * This is the last piece of the puzzle. I need this to be loaded from the config file.
  * 
  */
-var HouseSchema = new mongoose.Schema({
-    name: {type: String,
-        unique: true,
-        required: true
-    },
-    bedroom: {
-        hall: {
-            on: {type: String, default: false},
-            color: {type: Number, default:1},
-            brightness: {type:Number, default: 100}
-        },
-        lamp: {
-            on: {type: String, default: false},
-            color: {type: Number, default:1},
-            brightness: {type:Number, default: 100}
-        }
-    },
-    livingRoom: {
-        overhead: {
-            on: {type: String, default: false},
-            color: {type: Number, default:1},
-            brightness: {type:Number, default: 100}
-        },
-        recess: {
-            on: {type: String, default: false},
-            color: {type: Number, default:1},
-            brightness: {type:Number, default: 100}
-        }
+var json = {}
+for (var i in config.house ){
+    json[i] = {};
+    for (var x in config.house[i]) {
+        json[i][x] = {}
+        for (var key in config.house[i][x]) {
+            if (typeof config.house[i][x][key] == 'string')
+            json[i][x][key] = {type: String, default:config.house[i][x][key]}
+            else if (typeof config.house[i][x][key] == 'number')
+                json[i][x][key] = {type: Number, default:config.house[i][x][key]}
 
-    },
-    kitchen: {
-        overhead: {
-            on: {type: String, default: false},
-            color: {type: Number, default:1},
-            brightness: {type:Number, default: 100}
-        },
-        counter: {
-            on: {type: String, default: false},
-            color: {type: Number, default:1},
-            brightness: {type:Number, default: 100}
-        },
-        foyer: {
-            on: {type: String, default: false},
-            color: {type: Number, default:1},
-            brightness: {type:Number, default: 100}
-        },
-        coffee: {
-            on: {type: String, default: false}
         }
-    },
-    hall: {
-        main: {
-            on: {type: String, default: false},
-            color: {type: Number, default:1},
-            brightness: {type:Number, default: 100}
-        }
-    },
-    misc: {
-        christmas: {
-            on: {type: String, default: false},
-        }
-    },
-    volume: Number
-});
+    }
+
+}
+json['name'] = {type: String, unique: true, require: true}
+json['volume'] = Number;
+console.log(json['bedroom']['hall'])
+var HouseSchema = new mongoose.Schema(json);
 
 module.exports = mongoose.model('House', HouseSchema);
