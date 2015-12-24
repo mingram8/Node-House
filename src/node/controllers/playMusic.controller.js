@@ -110,8 +110,9 @@ exports.getUrl = function(req, res, next) {
 
     req.pm.getStreamUrl(req.body.song[req.body.index].track.nid, function (err, streamUrl) {
         if (ip == "::1" && req.body.next == undefined){
-            res.send(streamUrl);
-
+            req.url = streamUrl
+            process.SONG_PLAYING = true;
+            next();
         }
         else {
             req.url = streamUrl
@@ -339,10 +340,11 @@ exports.play = function(req, res) {
     process.STORED_SONGS = req.body.song;
     process.STORED_INDEX = req.body.index;
     process.PAUSED = false;
+    console.log('wee')
     if (process.SONG_PLAYING == true) {
         spawn.exec('pkill vlc', function () {
             console.log('FUUUUUUCK')
-                var term = spawn.spawn('cvlc', ['-I', 'http', req.url, 'localhost:8080']);
+                var term = spawn.spawn('vlc', ['-I', 'http', req.url, 'localhost:8080']);
 
         });
         if(req.body.song[req.body.index].track == undefined) {

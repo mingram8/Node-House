@@ -1,7 +1,6 @@
 var WifiBoxModule = require('./wifibox.js'),
     utils = require('./utils.controller.js'),
     cmd = require('./commands.js'),
-    dash_button = require('node-dash-button'),
     House = require('../models/house.model.js'),
     houseController = require('./house.controller'),
     config = require('../../../config/main.config'),
