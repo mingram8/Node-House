@@ -5,7 +5,6 @@ var mongoose = require('mongoose'),
  * This is the last piece of the puzzle. I need this to be loaded from the config file.
  * 
  */
-console.log('HOUSE  ')
 var json = {}
 for (var i in config.house ){
     json[i] = {};
