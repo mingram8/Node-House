@@ -1,4 +1,4 @@
-Node House is a NodeJs smart house application.
+Node House is a NodeJs smart house application. It creates a server with user auth that Tablets, and web pages can hit to control your smart home. 
 
 <p>This was built almost entirely because I wanted to be able to use my Google music account
 on my speaker system without paying for a chromecast. It evolved into a pretty massive
@@ -40,6 +40,9 @@ sed -ir "s/$needle/\xb8\x01\x00\x00\x00/" /usr/bin/vlc</p>
  <h4>Big thing</h4>
  <p>If you are running Ubuntu/(other Linux Distro), have MongoDB running, and tell VLC to run in root, now you have to do the configuration setup. All of the files in config/custom_configs/ are what you need to change. Most of them are very easy and take very little to no time. I tried to make it very clear in the comments on those files. The only big one is house.config. It is also <b>Extremely</b> important. The one that is in there, is just an example house. Use lower case letters, it is just easier. You can't use spaces, You can use underscores and add something to regex them out when the buttons are sent, since I capitalize the first letter when the buttons are sent. It is a basic JSON structure. </p>
  <p>The structure has to be identical if you don't want to change any other files. So, objects cant be more than 2 deep. Lights require exactly what they are set up as. You can add as many extra rooms, lights, buttons, etc.. as you want as long as it is setup the same way. I tried to comment each line to help clarity.</p>
+ 
+ <h2>Users</h2>
+ <p>It uses users to determine who gets buttons and to somewhat add protection. Use Postman (search in chrome store, it is free) and do a post to /postUsers. with the form body username: <username>, password:<password>, role:<role>. Role should be 'admin' to have total control over all the buttons. I have different logins for foyer/livingroom/kitchen and my bedroom so people can't toggle my bedroom lights.
  
  <h2>Work in progress</h2>
  <p>I never really intended to 1) publish this or 2) for it to get as large as it did. So, there will be hiccups
