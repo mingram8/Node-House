@@ -40,10 +40,7 @@ sed -ir "s/$needle/\xb8\x01\x00\x00\x00/" /usr/bin/vlc</p>
  
  <h3>To fullscreen the application, click on the clock.</h3>
  
- <h3>Big BIG thing.</h3>
- 
- <p>The house Schema isn't loaded from the config file, SO you will have to modify src/node/models/house.model.js to reflect
- your house.config file. I will hopefully figure this out down the line</p>
+ <h3>Big thing.</h3>
  
  <p>If you are running Ubuntu/(other Linux Distro), have MongoDB running, and tell VLC to run in root, now you have to do the configuration setup. All of the files in config/custom_configs/ are what you need to change. Most of them are very easy and take very little to no time. I tried to make it very clear in the comments on those files. The only big one is house.config. It is also <b>Extremely</b> important. The one that is in there, is just an example house. Use lower case letters, it is just easier. You can't use spaces, You can use underscores and add something to regex them out when the buttons are sent, since I capitalize the first letter when the buttons are sent. It is a basic JSON structure. </p>
  <p>The structure has to be identical if you don't want to change any other files. So, objects cant be more than 2 deep. Lights require exactly what they are set up as. You can add as many extra rooms, lights, buttons, etc.. as you want as long as it is setup the same way. I tried to comment each line to help clarity.</p>
