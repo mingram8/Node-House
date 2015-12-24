@@ -5,7 +5,7 @@ on my speaker system without paying for a chromecast. It evolved into a pretty m
 project. I attempted to break as much as possible out into config files and will try to explain
 it the best I can.</p>
 
-<h2>What does it do.</h2>
+<h2>What does it do?</h2>
 <ul>
 <li>Plays Google music over your speakers</li>
 <li>Adds control to pause, stop, forward, back.</li>
