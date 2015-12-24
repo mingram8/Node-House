@@ -48,9 +48,8 @@ if (config.dash != undefined) {
                     if (dash_id === config.dash[i].id &&
                         house[config.dash[i].zone[0]][config.dash[i].zone[1]].on == 'false' &&
                         timeDiff > 2000) {
-                        var json = houseController.createBlankHouse();
-                        json[config.dash[i].zone[0]][config.dash[i].zone[1]].on = "true";
-                        houseController.updateHouse(json);
+                        house[config.dash[i].zone[0]][config.dash[i].zone[1]].on = 'true';
+                        houseController.updateHouse(house);
                         //I call it a bunch because the lights kind of suck and will miss them
                         box[utils.getBoxNumber(config.dash[i].zone)].command(cmd.rgbw.on(utils.getZoneNumber(config.dash[i].zone)));
                         box[utils.getBoxNumber(config.dash[i].zone)].command(cmd.rgbw.on(utils.getZoneNumber(config.dash[i].zone)));
@@ -62,9 +61,8 @@ if (config.dash != undefined) {
                     else if (dash_id === config.dash[i].id &&
                         house[config.dash[i].zone[0]][config.dash[i].zone[1]].on == 'true' &&
                         timeDiff > 2000) {
-                        var json = houseController.createBlankHouse();
-                        json[config.dash[i].zone[0]][config.dash[i].zone[1]].on = "false";
-                        houseController.updateHouse(json);
+                        house[config.dash[i].zone[0]][config.dash[i].zone[1]].on = 'false';
+                        houseController.updateHouse(house);
                         box[utils.getBoxNumber(config.dash[i].zone)].command(cmd.rgbw.off(utils.getZoneNumber(config.dash[i].zone)));
                         box[utils.getBoxNumber(config.dash[i].zone)].command(cmd.rgbw.off(utils.getZoneNumber(config.dash[i].zone)));
                         box[utils.getBoxNumber(config.dash[i].zone)].command(cmd.rgbw.off(utils.getZoneNumber(config.dash[i].zone)));
@@ -81,9 +79,9 @@ if (config.dash != undefined) {
                     if (dash_id === config.dash[i].id &&
                         house[config.dash[i].zone[0]][config.dash[i].zone[1]] == 'false' &&
                         timeDiff > 2000 || timeDiff != timeDiff) {
-                        var json = houseController.createBlankHouse();
-                        json[config.dash[i].zone[0]][config.dash[i].zone[1]].on = "true";
-                        houseController.updateHouse(json);
+                        house[config.dash[i].zone[0]][config.dash[i].zone[1]].on = 'true';
+                        console.log(house)
+                        houseController.updateHouse(house);
                         //I call it a bunch because the lights kind of suck and will miss them
                         var req = http.get('http://' + config.radio.ip + ':' + config.radio.port + '/radio/' + config.dash[i].radio_code_on, function (r) {
                             r.on('data', function () { /* do nothing */
@@ -99,9 +97,9 @@ if (config.dash != undefined) {
 
                     }
                     else {
-                        var json = houseController.createBlankHouse();
-                        json[config.dash[i].zone[0]][config.dash[i].zone[1]].on = "false";
-                        houseController.updateHouse(json);
+                        house[config.dash[i].zone[0]][config.dash[i].zone[1]].on = 'false';
+                        console.log(house)
+                        houseController.updateHouse(house);
                         var req = http.get('http://' + config.radio[config.dash[i].radioNumber].ip + ':' + config.radio[config.dash[i].radioNumber].port + '/radio/' + config.dash[i].radio_code_off, function (r) {
                             r.on('data', function () { /* do nothing */
                             });
@@ -121,4 +119,5 @@ if (config.dash != undefined) {
         });
     })
 }
+
 
