@@ -1,8 +1,8 @@
 /**
  * This config is extremely important. It is what sets up your whole house.
- * The first time you run the app, it will save this file into a Schema in mongoDB. So,
- * make sure that it is how you want it before you run it. (You can fix it later if
- * you mess up with the load_new flag on main config)
+ * It will thurn this file into a Schema in mongoDB. Any update to it
+ * will also update the house schema, so it is very easy to add new rooms, zones, or whatever else.
+ * The values that are set here are the default values that get set in the DB. 
  *
  * This is my setup. Try not to go more than 2 descriptions deep.
  * So max would be: bedroom.lamp. You can add deeper but you are going to
