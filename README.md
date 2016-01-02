@@ -38,6 +38,9 @@ for me: </p>
  
  <h3>To fullscreen the application, click on the clock.</h3>
  
+ <h2>Microphone use</h2>
+ <p>I added a HTML5 mic that sends words to a server. It is for voice control and the intercom. My tablets microphones aren't actually good enough to use it so it isn't that important. I added a https port so that you don't get pinged every 5 seconds for access to the microphone. If you don't use it, deny it access and it will shutup.</p>
+ 
  <h3>Big thing.</h3>
  
  <p>If you are running Ubuntu/(other Linux Distro), have MongoDB running, and tell VLC to run in root, now you have to do the configuration setup. All of the files in config/custom_configs/ are what you need to change. Most of them are very easy and take very little to no time. I tried to make it very clear in the comments on those files. The only big one is house.config. It is also <b>Extremely</b> important. The one that is in there, is just an example house. Use lower case letters, it is just easier. You can't use spaces, You can use underscores and add something to regex them out when the buttons are sent, since I capitalize the first letter when the buttons are sent. It is a basic JSON structure. </p>
