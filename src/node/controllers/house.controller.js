@@ -10,7 +10,6 @@ var http = require('http'),
     config = require('../../../config/main.config'),
     time = null,
     totalTimes = 0,
-    dash_button = require('node-dash-button'),
     buttononis = require('../controllers/button.controller')
     box = []
 
