@@ -51,10 +51,11 @@ for me: </p>
  <p>It uses users to determine who gets buttons and to somewhat add protection. Use Postman (search in chrome store, it is free) and do a post to /users. with the form body username: <username>, password:<password>, role:<role>. Role should be 'admin' to have total control over all the buttons. I have different logins for foyer/livingroom/kitchen and my bedroom so people can't toggle my bedroom lights.
  
  <h2>Raspberry Pi use</h2>
- <p>It was a bit of a pain but I have it working on my Raspberry Pi 2 running Jessie. Big thing is VLC does not work and omxplayer doesn't use alsa so volume controls don't work as well as pause/play. There is some script floating around called dbuscontrol.sh to fix this but I couldn't get that to work either. If you get it to work, PLEASE add it and do a pull request.</p>
+ <p>It was a bit of a pain but I have it working on my Raspberry Pi 2 running Jessie.</p>
  
  <p>You need to make sure your Nodejs is at least version 4 or it won't work. I installed directly from nodejs.org because the one in the raspbian repository is 0.10.4 and pcap just doesn't work with it.</p>
  <p>After that run sudo apt-get install libpcap-dev and then npm install . Then run it with sudo node server.js and it should be up and running. Buttons won't appear at first because it will ping the server for a house, none will be found, then a new one will be saved and on the next ping buttons will load. So, don't panic.</p>
+ <p>Make sure you have amixer volume set and the right output or vlc will sound like it doesn't work. If you are using an aux port with the analog output I would type sudo amixer cset numid=3 1 then amixer sset 'Master' 50%   just to make sure. It stumped me for a bit since I had it on auto and the HDMI plugged in. I think it was sending sound to my monitor with no output.</p>
  <h2>Work in progress.</h2>
  
  <p>I never really intended to 1) publish this or 2) for it to get as large as it did. So, there will be hiccups
