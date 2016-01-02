@@ -48,7 +48,7 @@ for me: </p>
  
  <h2>Users.</h2>
  
- <p>It uses users to determine who gets buttons and to somewhat add protection. Use Postman (search in chrome store, it is free) and do a post to /postUsers. with the form body username: <username>, password:<password>, role:<role>. Role should be 'admin' to have total control over all the buttons. I have different logins for foyer/livingroom/kitchen and my bedroom so people can't toggle my bedroom lights.
+ <p>It uses users to determine who gets buttons and to somewhat add protection. Use Postman (search in chrome store, it is free) and do a post to /users. with the form body username: <username>, password:<password>, role:<role>. Role should be 'admin' to have total control over all the buttons. I have different logins for foyer/livingroom/kitchen and my bedroom so people can't toggle my bedroom lights.
  
  <h2>Raspberry Pi use</h2>
  <p>It was a bit of a pain but I have it working on my Raspberry Pi 2 running Jessie. Big thing is VLC does not work and omxplayer doesn't use alsa so volume controls don't work as well as pause/play. There is some script floating around called dbuscontrol.sh to fix this but I couldn't get that to work either. If you get it to work, PLEASE add it and do a pull request.</p>
