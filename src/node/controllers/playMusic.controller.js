@@ -340,10 +340,10 @@ exports.play = function(req, res) {
     process.STORED_SONGS = req.body.song;
     process.STORED_INDEX = req.body.index;
     process.PAUSED = false;
-    console.log('wee')
     if (process.SONG_PLAYING == true) {
         spawn.exec('pkill vlc', function () {
-            console.log('FUUUUUUCK')
+            console.log(req.url)
+
                 var term = spawn.spawn('vlc', ['-I', 'http', req.url, 'localhost:8080']);
 
         });

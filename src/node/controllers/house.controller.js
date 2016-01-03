@@ -137,7 +137,8 @@ exports.volumeDown = function (req, res) {
  * @param res
  */
 exports.volumeSet = function (req, res) {
-    spawn.exec("amixer sset 'Master' " + req.params.volume + "%");
+    console.log("amixer sset 'Master' " + req.params.volume + "%")
+    spawn.spawn("amixer",["set", "'Master'", req.params.volume + "%"]);
     House.findOne({name: 'house'}, function (err, house) {
         house.volume = req.params.volume;
         exports.updateHouse(house);
@@ -158,6 +159,18 @@ exports.getWeather = function (req, res) {
  */
 exports.getHouse = function (req, res) {
     House.findOne({name: req.body.name}, function (err, house) {
+        if (house == undefined) {
+                var house = new House({
+                    name: 'house'
+                });
+                house.save(function (err) {
+                    if (err)
+                        console.log(err)
+                    else {
+                        console.log('New House');
+                    }
+                });
+            };
         res.send(house)
     });
 }
@@ -170,7 +183,8 @@ exports.getHouse = function (req, res) {
  * @param json
  */
 exports.updateHouse = function(json) {
-    House.update({}, {$set: json}, function(house){
+    json._id = undefined;
+    House.update({name: 'house'}, {$set: json}, function(house){
         console.log(house)
     });
 }
