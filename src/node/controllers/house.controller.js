@@ -2,15 +2,13 @@ var http = require('http'),
     User = require('../models/user.model.js'),
     utils = require('./utils.controller.js'),
     WifiBoxModule = require('./wifibox.js'),
-    cmd = require('../controllers/commands.js'),
     House = require('../models/house.model.js'),
     spawn = require('child_process'),
-    dash = require('../controllers/dash.controller'),
     YQL = require('yql'),
     config = require('../../../config/main.config'),
     time = null,
     totalTimes = 0,
-    buttononis = require('../controllers/button.controller')
+    buttononis = require('../controllers/dash.controller')
     box = []
 
 if (config.lights != undefined) {
@@ -90,6 +88,10 @@ function getPrecip() {
     }
 }
 
+exports.sendVoice = function(req, res) {
+    console.log(req.body.voice)
+    res.send('anything')
+}
 /**
  * Delete the house in case you really screwed up. I would disconnect or remove
  * this when you are set.

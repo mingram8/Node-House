@@ -131,6 +131,8 @@ exports.createButtons = function(req, res) {
 
     if (req.user.role == 'admin') {
         buttons.push({name: 'Bedtime', param: ['bedtime'], folder: false})
+        buttons.push({name: 'Intercom', param: ['intercom'], folder: false})
+
     }
     buttons.push({name:'Music', param:'musicPage', folder:false})
     res.send({buttons: buttons, folderButtons: folderButtons});

@@ -1,4 +1,5 @@
 var http = require('http'),
+    https = require('https'),
     express = require('./config/express'),
     fs = require('fs'),
     sslkey = fs.readFileSync('sslcerts/key.pem'),
@@ -21,8 +22,10 @@ var box = new WifiBoxModule("192.168.86.114", 8899);express();
 var app = express();
 var passport = passport();
 var httpServer = http.createServer(app);
+var httpServers = https.createServer(credentials,app);
 
 httpServer.listen(2000);
+httpServers.listen(2001);
 
 
 module.exports = app;

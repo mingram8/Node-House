@@ -13,6 +13,7 @@ module.exports = function(app) {
     app.get('/brightness/:zone/:zone2/:percent', lights.brightness)
     app.post('/codesend/', house.codeSend);
     app.get('/getWeather', house.getWeather);
+    app.post('/sendVoice', authController.isAuthenticated, house.sendVoice)
 
     app.post('/getHouse', house.getHouse);
     app.route('/newHouse').post(house.newHouse);

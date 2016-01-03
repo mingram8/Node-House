@@ -1,11 +1,6 @@
 var http = require('http');
-var fs = require('fs');
-var spawn = require('child_process');
 var User = require('../models/user.model.js');
-var BinaryServer = require('binaryjs').BinaryServer;
 var fs = require('fs');
-var wav = require('wav');
-var outFile = 'demo.wav';
 
 exports.playWhitenoise = function(req, res) {
    try {
