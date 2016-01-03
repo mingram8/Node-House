@@ -3,6 +3,6 @@ var authController = require('../controllers/auth.controller.js');
 
 module.exports = function(app) {
     app.get('/getStocks', stock.stocks);
-
+    app.get('/returnStocks', stock.returnStocks)
 
 }

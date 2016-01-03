@@ -25,6 +25,7 @@
     <script src="js/controllers/IntercomController.js"></script>
     <script src="js/controllers/HouseController.js"></script>
     <script src="js/controllers/MusicController.js"></script>
+    <script src="js/controllers/GoogleVoiceController.js"></script>
 
 </head>
 <% if (role) { %>
@@ -63,7 +64,7 @@
             </tr>
         </table>
         <br>
-
+<div ng-controller="GoogleVoiceController"></div>
         <div class='music' ng-show="currentSong.playingExternal">
             <img width='120px' id='albumArt' ng-src="{{currentSong.track.albumArtRef[0].url}}">
             <span class="musicSlider"></span>

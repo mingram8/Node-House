@@ -57,10 +57,13 @@ app.controller('HouseController', function ($scope, $http, $sce, $interval, $tim
     $scope.background = "url('images/snow-9.gif') no-repeat"
     $scope.intercomOn = false;
     $scope.onceOver = false;
+    $scope.intercom = false;
     $scope.interval;
     $scope.switchButtons = {};
-    $scope.timeNumber = 1000; /*How often the time function should fire */
-    $scope.stockSpeed = 400; /*Speed of the stock ticker */
+    $scope.timeNumber = 1000;
+    /*How often the time function should fire */
+    $scope.stockSpeed = 400;
+    /*Speed of the stock ticker */
     $scope.currentPlayer = "a";
     var audio;
     var audio2;
@@ -69,16 +72,6 @@ app.controller('HouseController', function ($scope, $http, $sce, $interval, $tim
     var parts = [];
 
     $scope.bedtime = false;
-    $scope.intercom = function () {
-        if ($scope.intercomOn == true) {
-            stopRecording();
-            $scope.intercomOn = false;
-        }
-        else {
-            startRecording();
-            $scope.intercomOn = true;
-        }
-    }
     $scope.toggleFullScreen = function () {
         if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {  // current working methods
             if (document.documentElement.requestFullscreen) {
@@ -293,14 +286,15 @@ app.controller('HouseController', function ($scope, $http, $sce, $interval, $tim
      */
     $scope.bigInterval = $interval(function () {
         var elem = document.getElementById('stocks');
-        if (parseInt(css(elem, 'left'), 10) == parseInt(-120*$scope.totalStocks)) {
-            elem.style.left = parseInt(120*$scope.totalStocks) + 'px';
-            translate(elem, (parseInt(-120*$scope.totalStocks)),  $scope.stockSpeed)
+        if (parseInt(css(elem, 'left'), 10) == parseInt(-120 * $scope.totalStocks)) {
+            elem.style.left = parseInt(120 * $scope.totalStocks) + 'px';
+            translate(elem, (parseInt(-120 * $scope.totalStocks)), $scope.stockSpeed)
         }
         $scope.date = new Date();
         $scope.hours = $scope.date.getHours();
         $scope.minutes = $scope.date.getMinutes();
         $scope.day = $scope.date.getDate();
+        $scope.month = $scope.date.getMonth();
         $scope.seconds = $scope.date.getSeconds();
         $scope.milliSeconds = $scope.date.getMilliseconds();
 
@@ -319,27 +313,6 @@ app.controller('HouseController', function ($scope, $http, $sce, $interval, $tim
         document.getElementsByClassName('stockTicker')[0].style.width = (parseInt(css(document.getElementsByClassName('temperature')[0], 'width'))) - 7 + 'px'
         document.getElementsByClassName('stockTicker')[0].style.top = (parseInt(css(document.getElementsByClassName('temperature')[0], 'height')) - 20) + 'px'
     }, 400)
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-    var context = new AudioContext();
-
-    /**
-     * I had an intercom. The mics on my tablet are too shitty to
-     * really use so I removed it. But the functions are still
-     * floating around. This is one of them.
-     *
-     */
-    $scope.loadSound = function () {
-        var request = new XMLHttpRequest();
-        request.open("GET", "/sendRecording", true);
-        request.responseType = "arraybuffer";
-
-        request.onload = function () {
-            var Data = request.response;
-            process(Data);
-        };
-
-        request.send();
-    }
 
 
     $http({method: 'post', url: '/getHouse', data: {name: 'house'}}).success(function (data) {
@@ -356,7 +329,7 @@ app.controller('HouseController', function ($scope, $http, $sce, $interval, $tim
             for (var i in data.folderButtons) {
                 var flag = false;
                 $scope.switchButtons[i] = {}
-                for (var x=0; x < data.folderButtons[i].length; x++) {
+                for (var x = 0; x < data.folderButtons[i].length; x++) {
                     if (toBoolean($scope.data[i][data.folderButtons[i][x].param[1]].on) == true) {
                         $scope[i] = true;
                         flag = true;
@@ -385,7 +358,7 @@ app.controller('HouseController', function ($scope, $http, $sce, $interval, $tim
      * a stall could cause problems. I just like this way more.
      */
     $scope.timeFunction = function () {
-
+        $scope.loadSound();
         $http({method: 'post', url: '/getHouse', data: {name: 'house'}}).success(function (data) {
             $scope.coffee = toBoolean(data.kitchen.coffee.on);
             $scope.christmas = toBoolean(data.misc.christmas.on);
@@ -393,7 +366,7 @@ app.controller('HouseController', function ($scope, $http, $sce, $interval, $tim
             $http.get('/getButtons').success(function (data) {
                 for (var i in data.folderButtons) {
                     var flag = false;
-                    for (var x=0; x < data.folderButtons[i].length; x++) {
+                    for (var x = 0; x < data.folderButtons[i].length; x++) {
                         if (toBoolean($scope.data[i][data.folderButtons[i][x].param[1]].on) == true) {
                             $scope[i] = true;
                             flag = true;
@@ -424,21 +397,21 @@ app.controller('HouseController', function ($scope, $http, $sce, $interval, $tim
      */
     $scope.getStocks = function () {
         $http.get('/getStocks').success(function (data) {
-            var n =0;
-            var arr=[];
+            var n = 0;
+            var arr = [];
             for (i in data) {
-               arr.push({name: i.toUpperCase(), price: data[i]})
-               n ++;
-           }
+                arr.push({name: i.toUpperCase(), price: data[i]})
+                n++;
+            }
             if ($scope.totalStocks == undefined) {
-                translate(elem, (-120*n), $scope.stockSpeed);
+                translate(elem, (-120 * n), $scope.stockSpeed);
 
             }
             $scope.stocks = arr;
             $scope.totalStocks = n
 
             /*
-               If I am not sleeping, start the loop again
+             If I am not sleeping, start the loop again
              */
             if ($scope.bedtime == false) {
                 $timeout(function () {
@@ -470,7 +443,7 @@ app.controller('HouseController', function ($scope, $http, $sce, $interval, $tim
             $http.get('/toggleLights/bedroom/hall/off');
             $http.get('/toggleLights/bedroom/lamp/off');
             audio.play();
-             audio2.play();
+            audio2.play();
             $scope.interval = $interval(function () {
                 if ($scope.currentPlayer == "a") {
                     audio.pause()
@@ -501,7 +474,7 @@ app.controller('HouseController', function ($scope, $http, $sce, $interval, $tim
             audio.src = "/playWhiteNoise";
             audio2.src = "/playWhiteNoise";
             audio.play();
-             audio2.play();
+            audio2.play();
             $scope.interval = $interval(function () {
                 if ($scope.currentPlayer == "a") {
                     audio.pause()
@@ -540,6 +513,28 @@ app.controller('HouseController', function ($scope, $http, $sce, $interval, $tim
             $scope.bedtime = false;
         }
     }
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    var context = new AudioContext();
+
+
+    /**
+     * I had an intercom. The mics on my tablet are too shitty to
+     * really use so I removed it. But the functions are still
+     * floating around. This is one of them.
+     *
+     */
+    $scope.loadSound = function () {
+        var request = new XMLHttpRequest();
+        request.open("GET", "/sendRecording", true);
+        request.responseType = "arraybuffer";
+
+        request.onload = function () {
+            var Data = request.response;
+            process(Data);
+        };
+
+        request.send();
+    }
     /**
      * I had an intercom. The mics on my tablet are too shitty to
      * really use so I removed it. But the functions are still
@@ -551,10 +546,10 @@ app.controller('HouseController', function ($scope, $http, $sce, $interval, $tim
     function process(Data) {
         source = context.createBufferSource(); // Create Sound Source
         context.decodeAudioData(Data, function (buffer) {
+            console.log(buffer)
             source.buffer = buffer;
             source.connect(context.destination);
-            //source.start(context.currentTime);
-            audio.src = source.buffer
+            source.start(context.currentTime);
         })
     }
 
@@ -609,7 +604,7 @@ app.controller('HouseController', function ($scope, $http, $sce, $interval, $tim
                 document.body.style.backgroundSize = "cover"
             }
             /*
-                Yahoo doesn't give weather in Celcius so convert it.
+             Yahoo doesn't give weather in Celcius so convert it.
              */
             $scope.weather.celcius = ((parseInt($scope.weather.temp) - 32) * (5 / 9)).toFixed(2);
             $scope.forecast = data.weather.weather.item.forecast
@@ -659,14 +654,23 @@ app.controller('HouseController', function ($scope, $http, $sce, $interval, $tim
      * @param on
      */
     $scope.submitLight = function (param, on) {
-            if (on == true) {
-                $http.get('/toggleLights' + '/' + param[0] + '/' + param[1] + '/on');
-            }
-            else {
-                $http.get('/toggleLights' + '/' + param[0] + '/' + param[1] + '/off');
+        if (on == true) {
+            $http.get('/toggleLights' + '/' + param[0] + '/' + param[1] + '/on');
+        }
+        else {
+            $http.get('/toggleLights' + '/' + param[0] + '/' + param[1] + '/off');
 
-            }
+        }
     }
+    $scope.dimAll = function (param) {
+        var buttons = $scope.totalButtons[param[0]];
+        for (var i = 0; i < buttons.length; i++) {
+            if (buttons[i].type == 'light') {
+                $http.get('/brightness/' + '/' + buttons[i].param[0] + '/' + buttons[i].param[1] + '/0');
+            }
+        }
+    }
+
     /**
      * Tried to do a long click to toggle them all. It works about 70% of the time
      * It sends the correct commands but the lights do not react fast enough or mongo
@@ -729,16 +733,26 @@ app.controller('HouseController', function ($scope, $http, $sce, $interval, $tim
         else if (item[0] == "bedtime") {
             $scope.getMusic();
         }
+        else if (item[0] == "intercom") {
+            if ($scope.intercom == undefined || $scope.intercom == false) {
+                record();
+                $scope.intercom = true;
+            }
+            else {
+                stopRecord();
+                $scope.intercom = false;
+            }
+        }
         else if ($scope.data[item[0]][item[1]].brightness == undefined) {
             $http({method: 'post', url: '/codeSend', data: {device: item}}).success(function (data) {
 
             });
         }
-        else if ($scope.data[item[0]][item[1]].brightness) {
+        else if ($scope.data[item[0]][item[1]].brightnes != 'n') {
             console.log($scope.switchButtons)
-            console.log($scope.switchButtons[item[0]][item[1]] )
+            console.log($scope.switchButtons[item[0]][item[1]])
             /* This might seem counter intuitive, but the switch is set before
-                this function evalutes.
+             this function evalutes.
              */
             if ($scope.switchButtons[item[0]][item[1]] == true) {
                 $http.get('/toggleLights' + '/' + item[0] + '/' + item[1] + '/on');
@@ -764,8 +778,6 @@ app.controller('HouseController', function ($scope, $http, $sce, $interval, $tim
 
     document.getElementsByClassName('stockTicker')[0].style.width = (parseInt(css(document.getElementsByClassName('temperature')[0], 'width'))) - 7 + 'px'
     document.getElementsByClassName('stockTicker')[0].style.top = (parseInt(css(document.getElementsByClassName('temperature')[0], 'height')) - 20) + 'px'
-
-
 
 
 })

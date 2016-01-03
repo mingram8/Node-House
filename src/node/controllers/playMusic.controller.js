@@ -32,6 +32,8 @@ exports.render = function(req,res) {
  * @param next
  */
 exports.login = function (req, res, next) {
+    config = require('../../../config/main.config');
+
     var masterToken;
 
         pm.login({
@@ -40,28 +42,31 @@ exports.login = function (req, res, next) {
             androidId: config.google.androidId
         }, function (err, stuff) {
             console.log(stuff)
-            masterToken = stuff.masterToken;
-            pm.init({
-                androidId: config.google.androidId,
-                masterToken: masterToken
-            }, function () {
-                console.log('d')
-                req.pm = pm;
-                next()
-            })
-            if (err) console.error(err);
-            // place code here
+            if (err){
+                console.log(err)
+            }
+            else {
+                masterToken = stuff.masterToken;
+                pm.init({
+                    androidId: config.google.androidId,
+                    masterToken: masterToken
+                }, function () {
+                    console.log('d')
+                    req.pm = pm;
+                    next()
+                })
+                if (err) console.error(err);
+                // place code here
+            }
         })
 
 
 }
 
 exports.search = function (req, res) {
-    console.log(req.body.search)
         req.pm.search(req.body.search, 5, function (err, data) {
            res.send(data.entries);
         }, function (message, body, err, httpResponse) {
-            console.log(message);
         });
 }
 
@@ -142,7 +147,6 @@ exports.getStationTracks = function(req, res) {
 exports.getStations = function(req, res) {
     req.pm.getStations(function(data,err){
         res.send({data: data, err:err});
-        console.log(err);
     })
 }
 /**
@@ -340,10 +344,10 @@ exports.play = function(req, res) {
     process.STORED_SONGS = req.body.song;
     process.STORED_INDEX = req.body.index;
     process.PAUSED = false;
-    console.log('wee')
     if (process.SONG_PLAYING == true) {
         spawn.exec('pkill vlc', function () {
-            console.log('FUUUUUUCK')
+            console.log(req.url)
+
                 var term = spawn.spawn('vlc', ['-I', 'http', req.url, 'localhost:8080']);
 
         });

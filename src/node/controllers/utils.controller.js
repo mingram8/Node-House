@@ -10,6 +10,8 @@ var config = require('../../../config/main.config');
  * @returns {*}
  */
 exports.getZoneNumber = function(params) {
+    config = require('../../../config/main.config');
+
     console.log(params)
     if (params.length == 1)
         return config.house[params[0]].zoneNumber
@@ -25,6 +27,8 @@ exports.getZoneNumber = function(params) {
  * @returns {*}
  */
 exports.getBoxNumber = function(params) {
+    config = require('../../../config/main.config');
+
     console.log(params)
     if (params.length == 1)
         return config.house[params[0]].boxNumber
@@ -40,6 +44,8 @@ exports.getBoxNumber = function(params) {
  * @returns {*}
  */
 exports.getRadioCodes = function(params) {
+    config = require('../../../config/main.config');
+
     if (params.length == 1)
         return {on:config.house[params[0]].code_on.boxNumber,off:config.house[params[0]].code_off}
     else if (params.length == 2)

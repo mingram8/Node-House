@@ -2,16 +2,17 @@ var http = require('http'),
     User = require('../models/user.model.js'),
     utils = require('./utils.controller.js'),
     WifiBoxModule = require('./wifibox.js'),
-    cmd = require('../controllers/commands.js'),
     House = require('../models/house.model.js'),
     spawn = require('child_process'),
-    dash = require('../controllers/dash.controller'),
     YQL = require('yql'),
     config = require('../../../config/main.config'),
     time = null,
     totalTimes = 0,
-    buttononis = require('../controllers/button.controller')
-    box = []
+     mongoose = require('mongoose'),
+    buttononis = require('../controllers/dash.controller'),
+     fs = require('fs');
+
+box = []
 
 if (config.lights != undefined) {
     for (var i = 0; i < config.lights.boxes.length; i++)
@@ -41,8 +42,9 @@ var weatherTimer = setInterval(function () {
  * wind speed, and etc... I just don't care about it, personally, but it will gather it.
  */
 function getWeather() {
+    config = require('../../../config/main.config');
     try {
-        var query = new YQL('select * from weather.forecast where (location = '+config.weather.zipcode+')');
+        var query = new YQL('select * from weather.forecast where (location = ' + config.weather.zipcode + ')');
         query.exec(function (err, data) {
             try {
                 var condition = data.query.results.channel;
@@ -66,10 +68,12 @@ function getWeather() {
  *
  */
 function getPrecip() {
+    config = require('../../../config/main.config');
+
     console.log('having a go')
     try {
         var chunksss = []
-        var req = http.get('http://api.wunderground.com/api/'+config.weather.weather_underground_key+'/conditions/q/'+config.weather.state+'/'+config.weather.city+'.json', function (r) {
+        var req = http.get('http://api.wunderground.com/api/' + config.weather.weather_underground_key + '/conditions/q/' + config.weather.state + '/' + config.weather.city + '.json', function (r) {
             r.on('data', function (chunks) { /* do nothing */
                 chunksss += chunks;
             });
@@ -90,6 +94,10 @@ function getPrecip() {
     }
 }
 
+exports.sendVoice = function (req, res) {
+    console.log(req.body.voice)
+    res.send('anything')
+}
 /**
  * Delete the house in case you really screwed up. I would disconnect or remove
  * this when you are set.
@@ -135,7 +143,8 @@ exports.volumeDown = function (req, res) {
  * @param res
  */
 exports.volumeSet = function (req, res) {
-    spawn.exec("amixer sset 'Master' " + req.params.volume + "%");
+    console.log("amixer sset 'Master' " + req.params.volume + "%")
+    spawn.spawn("amixer", ["set", "'Master'", req.params.volume + "%"]);
     House.findOne({name: 'house'}, function (err, house) {
         house.volume = req.params.volume;
         exports.updateHouse(house);
@@ -156,8 +165,25 @@ exports.getWeather = function (req, res) {
  */
 exports.getHouse = function (req, res) {
     House.findOne({name: req.body.name}, function (err, house) {
+        if (house == undefined) {
+            var house = new House({
+                name: 'house'
+            });
+            house.save(function (err) {
+                if (err)
+                    console.log(err)
+                else {
+                    console.log('New House');
+                }
+            });
+        }
+        ;
         res.send(house)
     });
+}
+exports.returnHouse = function (req, res) {
+    config = require('../../../config/main.config');
+        res.send(config.house)
 }
 /**
  * Updates just what changed. Due to the complex nature, I end up just copying
@@ -167,9 +193,29 @@ exports.getHouse = function (req, res) {
  *
  * @param json
  */
-exports.updateHouse = function(json) {
-    House.update({}, {$set: json}, function(house){
+exports.updateHouse = function (json) {
+    json._id = undefined;
+
+    House.update({name: 'house'}, {$set: json}, function (house) {
         console.log(house)
+    });
+}
+exports.updateHouseExternal = function (req, res) {
+    var json = "module.exports = " +JSON.stringify(req.body);
+
+    fs.writeFile("config/custom_configs/house.config.js", json, function (err) {
+        if (err) {
+            return console.log(err);
+        }
+
+        require.cache[process.cwd() + "/config/custom_configs/house.config.js"] = undefined;
+
+        require.cache[process.cwd() + "/config/main.config.js"] = undefined;
+        config = require('../../../config/main.config');
+
+        House.update({name: 'house'}, {$set: req.body}, function (house) {
+            res.send('If you added a new field, restart app to load new House.')
+        });
     });
 }
 /**
@@ -200,6 +246,8 @@ exports.newHouse = function (req, res) {
  * @param res
  */
 exports.codeSend = function (req, res) {
+    config = require('../../../config/main.config');
+
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
     var r = req;
     var codes = utils.getRadioCodes(req.body.device);
@@ -217,9 +265,9 @@ exports.codeSend = function (req, res) {
         }
 
 
-        for (var i=0; i < config.radio.boxes.length; i++) {
-            console.log(config.radio.boxes[i].ip+':'+config.radio.boxes[i].port +'/radio/'+ code)
-            var req = http.get(config.radio.boxes[i].ip+':'+config.radio.boxes[i].port +'/radio/'+ code, function (r) {
+        for (var i = 0; i < config.radio.boxes.length; i++) {
+            console.log(config.radio.boxes[i].ip + ':' + config.radio.boxes[i].port + '/radio/' + code)
+            var req = http.get(config.radio.boxes[i].ip + ':' + config.radio.boxes[i].port + '/radio/' + code, function (r) {
                 r.on('data', function () { /* do nothing */
                 });
             });

@@ -50,12 +50,15 @@ app.controller('MusicController', function ($scope, $http, $sce, $interval) {
            })
    }
     $scope.createStation = function(){
-            $http({method: 'post', url: '/search', data: {search: $scope.search}}).
-                success(function (data) {
-                    $http({method: 'post', url: '/createStation', data: {name: $scope.search, stationId: data[0].artist.artistId}}).success(function (data) {
-                        console.log(data);
-                });
+        $http.get('/getStations').success(function(data){
+            $scope.stations = data.err;
+            $scope.lastFrame.push('general');
+            $scope.showBack = true;
+            $scope.general = true;
+            $scope.artist = false;
+            $scope.album = false;
         });
+
     }
     $scope.openStation = function(station){
         $http({method: 'post', url: '/getStationTracks', data: {stationId: station.id, tracks:100}}).success(function (data) {

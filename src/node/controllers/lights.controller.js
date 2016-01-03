@@ -6,9 +6,24 @@ var WifiBoxModule = require('./wifibox.js'),
     config = require('../../../config/main.config'),
     time = null,
     box = [];
-if (config.lights != undefined) {
-    for (var i = 0; i < config.lights.boxes.length; i++)
-        box.push(new WifiBoxModule(config.lights.boxes[i].box_ip, config.lights.boxes[i].box_port));
+exports.updateLights = function() {
+    config = require('../../../config/main.config');
+    if (config.lights != undefined) {
+        for (var i = 0; i < config.lights.boxes.length; i++)
+            box.push(new WifiBoxModule(config.lights.boxes[i].box_ip, config.lights.boxes[i].box_port));
+    }
+
+}
+exports.updateLights();
+exports.returnLights = function(req,res) {
+    config = require('../../../config/main.config');
+
+    if (config.lights != undefined) {
+        res.send(config.lights)
+    }
+    else {
+        res.send('none')
+    }
 }
 /**
  * Toggle on and off the lights and save it to mongo so that
@@ -28,6 +43,7 @@ if (config.lights != undefined) {
  *
  */
 exports.toggleLights = function (req, res) {
+    config = require('../../../config/main.config');
 
     var light = config.house[req.params.zone][req.params.zone2];
     if (req.params.on == 'on') {
@@ -76,6 +92,7 @@ exports.toggleLights = function (req, res) {
  * @param res
  */
 exports.lightsWhite = function (req, res) {
+    config = require('../../../config/main.config');
 
     var light = config.house[req.params.zone][req.params.zone2];
     box[light.boxNumber].command(cmd.rgbw.whiteMode(light.zoneNumber));
@@ -99,6 +116,8 @@ exports.lightsWhite = function (req, res) {
  * @param res
  */
 exports.brightness = function (req, res) {
+    config = require('../../../config/main.config');
+
     var light = config.house[req.params.zone][req.params.zone2];
     box[light.boxNumber].command(cmd.rgbw.on(light.zoneNumber));
     box[light.boxNumber].command(cmd.rgbw.brightness(parseInt(req.params.percent)));
@@ -124,6 +143,8 @@ exports.brightness = function (req, res) {
  * @param res
  */
 exports.changeLights = function (req, res) {
+    config = require('../../../config/main.config');
+
     var light = config.house[req.params.zone][req.params.zone2];
 
     console.log(parseInt(req.params.percent))

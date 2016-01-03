@@ -46,6 +46,11 @@ exports.stocks = function(req, res) {
     res.send(stockJson)
 
 }
+exports.returnStocks = function(req, res) {
+    config = require('../../../config/main.config');
+
+    res.send(config.stocks)
+}
 setInterval(function(){exports.getStocks()},20000);
 /**
  * All these requests takes a long time to go all the way through
@@ -53,6 +58,8 @@ setInterval(function(){exports.getStocks()},20000);
  * of hitting it directly.
  */
 exports.getStocks = function() {
+    config = require('../../../config/main.config');
+
     for (var i=0; i < config.stocks.length; i ++) {
         exports.getQuotes(config.stocks[i], i, function (price,i) {
             stockJson[config.stocks[i]] = price;
