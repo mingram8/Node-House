@@ -32,30 +32,32 @@ for me: </p>
 
 <h2>How to do it.</h2>
 
-<p><b>You have to use Linux on the server it runs on</b>. I really don't like Windows, especially as a server, and don't feel like dealing with it. You could probably get it running on OSX with some tuning. You have to have MongoDB installed and running. Let it sit on the default port. If you want to lock it down (which you should) then add credentials to config/express.js. I don't have any in the default app. This is how all of the clients are aware of the current state of the house.</p>
+<p><b>You have to use Linux on the server it runs on</b>. I really don't like Windows, especially as a server, and don't feel like dealing with it. You could probably get it running on OSX with some tuning. You have to have MongoDB installed and running. Let it sit on the default port. If you want to lock it down (which you should) then add credentials to config/express.js. I don't have any in the default app. This is how all of the clients are aware of the current state of the house. After that, just do a NPM install from the Node-House directory.</p>
  <p>VLC is what plays the music. So, you need that downloaded. You could use something like omxplayer, but you lose
- http server support, so pause/play will not work. If that isn't a big deal then go ahead and find+replace cvlc in src/node/controllers/playMusic.controller with player of your choice. Also, change spawn.spawn('cvlc', ['-I', 'http', req.url, 'localhost:8080']); to spawn.spawn('omxplayer', [req.url]); [or player of your choice instead of omxplayer] and it should work</p>
+ http server support, so pause/play will not work. If that isn't a big deal then go ahead and find+replace cvlc in src/node/controllers/playMusic.controller with player of your choice. Also, change spawn.spawn('cvlc', ['-I', 'http', req.url, 'localhost:8080']); to spawn.spawn('omxplayer', [req.url]); [or player of your choice instead of omxplayer] and it should work.
+ </p>
+ <p>On first boot, an admin user is loaded. To set up your House, login as username: admin, password:admin and navigate to /admin. From there there are tabs to set everything up. All they actually do is modify the config files under config/custom_configs if you would like to do it manually. But for on the fly modifications use the admin page. <b>Except for House, that requires a restart</b>. I haven't figured out a way around that yet. Mongoose really throws a fit.</p>
  
- <h3>To fullscreen the application, click on the clock.</h3>
+ <p>House structure can only be 3 deep. So, Bedroom.lamp.on or bedroom.hall.color.</p>
  
- <h2>Microphone use</h2>
- <p>I added a HTML5 mic that sends words to a server. It is for voice control and the intercom. My tablets microphones aren't actually good enough to use it so it isn't that important. I added a https port so that you don't get pinged every 5 seconds for access to the microphone. If you don't use it, deny it access and it will shutup.</p>
+ <p>Only users with the admin (all lowercase) role can modify the admin page. If you accidentally delete your admin, a new admin admin user is created. Only admin can add new users.</p>
  
- <h3>Big thing.</h3>
- 
- <p>If you are running Ubuntu/(other Linux Distro), have MongoDB running, and tell VLC to run in root, now you have to do the configuration setup. All of the files in config/custom_configs/ are what you need to change. Most of them are very easy and take very little to no time. I tried to make it very clear in the comments on those files. The only big one is house.config. It is also <b>Extremely</b> important. The one that is in there, is just an example house. Use lower case letters, it is just easier. You can't use spaces, You can use underscores and add something to regex them out when the buttons are sent, since I capitalize the first letter when the buttons are sent. It is a basic JSON structure. </p>
- <p>The structure has to be identical if you don't want to change any other files. So, objects cant be more than 2 deep. Lights require exactly what they are set up as. You can add as many extra rooms, lights, buttons, etc.. as you want as long as it is setup the same way. I tried to comment each line to help clarity.</p>
- 
- <h2>Users.</h2>
- 
- <p>It uses users to determine who gets buttons and to somewhat add protection. Use Postman (search in chrome store, it is free) and do a post to /users. with the form body username: <username>, password:<password>, role:<role>. Role should be 'admin' to have total control over all the buttons. I have different logins for foyer/livingroom/kitchen and my bedroom so people can't toggle my bedroom lights.
- 
- <h2>Raspberry Pi use</h2>
+  <h2>Raspberry Pi use</h2>
  <p>It was a bit of a pain but I have it working on my Raspberry Pi 2 running Jessie.</p>
  
  <p>You need to make sure your Nodejs is at least version 4 or it won't work. I installed directly from nodejs.org because the one in the raspbian repository is 0.10.4 and pcap just doesn't work with it.</p>
  <p>After that run sudo apt-get install libpcap-dev and then npm install . Then run it with sudo node server.js and it should be up and running. Buttons won't appear at first because it will ping the server for a house, none will be found, then a new one will be saved and on the next ping buttons will load. So, don't panic.</p>
  <p>Make sure you have amixer volume set and the right output or vlc will sound like it doesn't work. If you are using an aux port with the analog output I would type sudo amixer cset numid=3 1 then amixer sset 'Master' 50%   just to make sure. It stumped me for a bit since I had it on auto and the HDMI plugged in. I think it was sending sound to my monitor with no output.</p>
+ <h3>To fullscreen the application, click on the clock.</h3>
+ 
+ <h2>Microphone use</h2>
+ <p>I added a HTML5 mic that sends words to a server. It is for voice control and the intercom. My tablets microphones aren't actually good enough to use it so it isn't that important. I added a https port so that you don't get pinged every 5 seconds for access to the microphone. If you don't use it, deny it access and it will shutup.</p>
+ 
+ <h2>Users.</h2>
+ 
+ <p>It uses users to determine who gets buttons and to somewhat add protection. Use Postman (search in chrome store, it is free) and do a post to /users. with the form body username: <username>, password:<password>, role:<role>. Role should be 'admin' to have total control over all the buttons. I have different logins for foyer/livingroom/kitchen and my bedroom so people can't toggle my bedroom lights.
+ 
+
  <h2>Work in progress.</h2>
  
  <p>I never really intended to 1) publish this or 2) for it to get as large as it did. So, there will be hiccups
