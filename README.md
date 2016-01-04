@@ -32,7 +32,7 @@ for me: </p>
 
 <h2>How to do it.</h2>
 
-<h4>If you want to use radio controlled stuff you need <a href="http://www.github.com/mingram8/Radio">Radio</a> installed</h4>
+<h4>If you want to use radio controlled stuff you need <a href="http://www.github.com/mingram8/Radio">Radio</a> and <a href="http://www.github.com/timleland/rfoutlet">rfoutlet</a> installed</h4>
 <p><b>You have to use Linux on the server it runs on</b>. I really don't like Windows, especially as a server, and don't feel like dealing with it. You could probably get it running on OSX with some tuning. You have to have MongoDB installed and running. Let it sit on the default port. If you want to lock it down (which you should) then add credentials to config/express.js. I don't have any in the default app. This is how all of the clients are aware of the current state of the house. After that, just do a NPM install from the Node-House directory.</p>
  <p>VLC is what plays the music. So, you need that downloaded. You could use something like omxplayer, but you lose
  http server support, so pause/play will not work. If that isn't a big deal then go ahead and find+replace cvlc in src/node/controllers/playMusic.controller with player of your choice. Also, change spawn.spawn('cvlc', ['-I', 'http', req.url, 'localhost:8080']); to spawn.spawn('omxplayer', [req.url]); [or player of your choice instead of omxplayer] and it should work.
