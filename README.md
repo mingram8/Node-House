@@ -48,6 +48,20 @@ for me: </p>
  
  <p>You need to make sure your Nodejs is at least version 4 or it won't work. I installed directly from nodejs.org because the one in the raspbian repository is 0.10.29 and pcap just doesn't work with it.</p>
  <p>After that run sudo apt-get install libpcap-dev and then npm install . Then run it with sudo node server.js and it should be up and running. Buttons won't appear at first because it will ping the server for a house, none will be found, then a new one will be saved and on the next ping buttons will load. So, don't panic.</p>
+ <p>Modify /etc/asound.conf with </br>
+ pcm.mmap0 {
+    type mmap_emul;
+    slave {
+      pcm "hw:0,0";
+    }
+}
+
+pcm.!default {
+  type plug;
+  slave {
+    pcm mmap0;
+  }
+}</p>
  <p>Make sure you have amixer volume set and the right output or vlc will sound like it doesn't work. If you are using an aux port with the analog output I would type sudo amixer cset numid=3 1 then amixer sset 'Master' 50%   just to make sure. It stumped me for a bit since I had it on auto and the HDMI plugged in. I think it was sending sound to my monitor with no output.</p>
  <h3>To fullscreen the application, click on the clock.</h3>
  
