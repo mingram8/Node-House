@@ -63,6 +63,10 @@ pcm.!default {
   }
 }</p>
  <p>Make sure you have amixer volume set and the right output or vlc will sound like it doesn't work. If you are using an aux port with the analog output I would type sudo amixer cset numid=3 1 then amixer sset 'Master' 50%   just to make sure. It stumped me for a bit since I had it on auto and the HDMI plugged in. I think it was sending sound to my monitor with no output.</p>
+ 
+ <p> I honestly stopped using the pi and use an old laptop as the server with the pis as relays (for radio controls and the like). The sliders just don't work well enough on the pi. If you don't want to adjust volume and are ok with sliders being jittery, then the pi works great. I am sure if I had a faster sd card, it would work great. The issue, I believe, is rapidly storing the slider states in mongodb, since controlling volume and brightness by exact values works fine.</p>
+ 
+ 
  <h3>To fullscreen the application, click on the clock.</h3>
  
  <h2>Microphone use</h2>
