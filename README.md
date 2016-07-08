@@ -1,4 +1,4 @@
-Node House is a NodeJs smart house application. It creates a server with user auth that Tablets, and web pages can hit to control your smart home. 
+Node House is a NodeJs smart house application. It creates a server with user auth that Tablets and web pages can hit to control your smart home.
 
 <p>This was built almost entirely because I wanted to be able to use my Google music account
 on my speaker system without paying for a chromecast. It evolved into a pretty massive
@@ -20,13 +20,13 @@ it the best I can.</p>
 <li>Displays Stock data</li>
 </ul>
 
-<h3>Runs in root.</h3>
+<h3>Runs as root.</h3>
 
-<p>Cannot stress this enough. It uses node-dash-button to create a network of dash buttons. To do this 
-it sniffs the network for mac addresses. If you don't feel comfortable running in root (which makes sense) just remove 
+<p>Cannot stress this enough. It uses node-dash-button to create a network of dash buttons. To do this,
+it sniffs the network for mac addresses. If you don't feel comfortable running in root (which makes sense), just remove
 references to node-dash-button and don't use Amazon Dash buttons.</p>
 
-<p>If you feel fine running in root, then you have to modify your VLC so that it will run in root. This command worked
+<p>If you feel fine running as root, then you have to modify your VLC so that it will run in root. This command worked
 for me: </p>
 <p>sed -i 's/geteuid/getppid/' /usr/bin/vlc</p>
 
@@ -47,7 +47,7 @@ for me: </p>
  <p>It was a bit of a pain but I have it working on my Raspberry Pi 2 running Jessie.</p>
  
  <p>You need to make sure your Nodejs is at least version 4 or it won't work. I installed directly from nodejs.org because the one in the raspbian repository is 0.10.29 and pcap just doesn't work with it.</p>
- <p>After that run sudo apt-get install libpcap-dev and then npm install . Then run it with sudo node server.js and it should be up and running. Buttons won't appear at first because it will ping the server for a house, none will be found, then a new one will be saved and on the next ping buttons will load. So, don't panic.</p>
+ <p>After that, run sudo apt-get install libpcap-dev and then npm install . Then run it with sudo node server.js and it should be up and running. Buttons won't appear at first because it will ping the server for a house, none will be found, then a new one will be saved and on the next ping buttons will load. So, don't panic.</p>
  <p>Modify /etc/asound.conf with </br>
  pcm.mmap0 {
     type mmap_emul;
