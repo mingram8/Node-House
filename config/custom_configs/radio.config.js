@@ -7,7 +7,7 @@
  */
 module.exports = {
     boxes: [{
-        ip: 'ip_address',
+        ip: 'http://192.168.1.3',
         port: 1900
     }]
 }

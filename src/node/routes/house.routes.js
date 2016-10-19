@@ -14,10 +14,12 @@ module.exports = function(app) {
     app.post('/codesend/', house.codeSend);
     app.get('/getWeather', house.getWeather);
     app.post('/sendVoice', authController.isAuthenticated, house.sendVoice)
+    app.post('/returnHouse', house.returnHouse);
 
     app.post('/getHouse', house.getHouse);
     app.route('/newHouse').post(house.newHouse);
     app.post('/deleteHouse', house.deleteHouse)
+    app.post('/updateHouseExternal', authController.isAuthenticated, house.updateHouseExternal)
 
     app.post('/newButton', button.newButton);
     app.post('/removeButton', button.removeButton);
@@ -34,4 +36,5 @@ module.exports = function(app) {
 
     app.get('/getButtons', authController.isAuthenticated, buttons.createButtons )
 
+    app.post('/sendSpeech', house.sendVoice)
 }

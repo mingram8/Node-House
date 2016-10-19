@@ -68,6 +68,8 @@ exports.findButtons = function(req, res) {
  * TODO: Make the user if statements dynamic so roles can be loaded from config files.
  */
 exports.createButtons = function(req, res) {
+    config = require('../../../config/main.config');
+
     var buttons = [];
     var folderButtons = {}
     for (var i in config.house) {
@@ -104,7 +106,7 @@ exports.createButtons = function(req, res) {
             (i != 'bedroom' || i!= 'bathroom) or another else if chunk like,
                 else if (i != 'masterBedroom' && role == 'child')
          */
-        else if (i != 'bedroom') {
+        else if (i != 'bedroom' && i != 'misc') {
             var num = 0;
             var restart = false;
             for (var x in config.house[i]) {
@@ -131,7 +133,7 @@ exports.createButtons = function(req, res) {
 
     if (req.user.role == 'admin') {
         buttons.push({name: 'Bedtime', param: ['bedtime'], folder: false})
-        buttons.push({name: 'Intercom', param: ['intercom'], folder: false})
+        buttons.push({name: 'Banks', param: ['intercom'], folder: false})
 
     }
     buttons.push({name:'Music', param:'musicPage', folder:false})

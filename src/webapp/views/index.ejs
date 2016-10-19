@@ -52,7 +52,7 @@
         <br>
         <span class="temp">{{weather.temp}}°F | {{weather.celcius}}°C</span>
         <br>
-        <table style="color:#86b9fe; float:none; margin:0 auto;">
+        <table style="color:#86b9fe; font-size:12px; float:none; margin:0 auto;">
             <tr>
                 <td ng-repeat="day in forecast">
                     {{day.day}}
@@ -64,7 +64,7 @@
             </tr>
         </table>
         <br>
-<div ng-controller="GoogleVoiceController"></div>
+<div ng-controller="GoogleVoiceController">{{results}}</div>
         <div class='music' ng-show="currentSong.playingExternal">
             <img width='120px' id='albumArt' ng-src="{{currentSong.track.albumArtRef[0].url}}">
             <span class="musicSlider"></span>

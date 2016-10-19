@@ -1,10 +1,1 @@
-/**
- * Stocks quotes.
- *
- * @type {string[]}
- */
-module.exports = [
-    'vnq',
-    'voo',
-    'vwo'
-]
+module.exports = ["t","vnq","voo","vwo"]

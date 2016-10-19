@@ -13,7 +13,7 @@
  */
 
 module.exports = {
-    gmail: "gmail",
-    password: "password*",
-    androidId: "androidId"
+    gmail: "mingram9473@gmail.com",
+    password: "Pass947*",
+    androidId: "308CA8F9AB88F172"
 }

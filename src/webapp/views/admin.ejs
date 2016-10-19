@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+    <script src="js/angular-color-picker.js"></script>
+    <script src="js/angular-toggle-switch.min.js"></script>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/ejs.min.js"></script>
+    <script src="js/rzslider.js"></script>
+    <script src="js/libraries/ng-file-upload.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/directives/enter.js"></script>
+    <script src="js/controllers/AdminController.js"></script>
+
+    <title><%= title %></title>
+</head>
+
+<body ng-app="houseApp" ng-controller="AdminController">
+<div id="container">
+    <div class="content">
+        <h6 id="info">{{info}}</h6>
+        Remove User: <select ng-model="user" ng-options="user for user in users">
+        </select>
+        <button ng-click="removeUser()">Remove</button>
+        </br>
+        <!--<h4 style="cursor:pointer;" ng-click="addNewUser = !addNewUser">Add User</h4>-->
+        <uib-tabset> <uib-tab heading="Add User">
+            <br>
+            <table>
+                <tr>
+                    <td>
+                        <label>Username: </label>
+                    </td>
+                    <td>
+                        <input type="text" ng-model="username">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Password: </label></td>
+                    <td>
+                        <input type="password" ng-model="password">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Type password again: </label></td>
+                    <td>
+                        <input type="password" ng-model="password1">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Role (use admin if want total control): </label></td>
+                    <td>
+                        <input type="text" ng-model="role"></td>
+                </tr>
+            </table>
+            <button ng-click="addUser(username,password,password1,role)">Add User</button>
+            </uib-tab>
+            <uib-tab heading="Google Credentials">
+            <br>
+            <table>
+                <tr>
+                    <td>
+                        <label>Gmail: </label>
+                    </td>
+                    <td>
+                        <input type="text" ng-model="gmail">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Password: </label></td>
+                    <td>
+                        <input type="password" ng-model="gpassword">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>AndroidID: </label></td>
+                    <td>
+                        <input type="text" ng-model="androidId"></td>
+                </tr>
+            </table>
+            <button ng-click="writeGoogle(gmail, gpassword, androidId)">Update Credentials</button>
+            </uib-tab>
+            <uib-tab heading="Weather">
+                <br>
+            <table>
+                <tr>
+                    <td>
+                        <label>Zipcode: </label>
+                    </td>
+                    <td>
+                        <input type="text" ng-model="zipcode">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>City: </label></td>
+                    <td>
+                        <input type="text" ng-model="city">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>State: </label></td>
+                    <td>
+                        <input type="text" ng-model="state"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Weather Underground Key: </label></td>
+                    <td>
+                        <input type="text" ng-model="wuKey"></td>
+                </tr>
+            </table>
+            <button ng-click="writeWeather(city,state,zipcode,wuKey)">Update Weather</button>
+            </uib-tab>
+            <uib-tab heading="Stocks">
+
+            <br>
+            <table>
+                <tr ng-repeat="stock in stocks track by $index">
+                    <td><input type="text" ng-model="stocks[$index]" value="{{stock}}"></td><td><button ng-click="removeStock($index)">Remove Stock</button></td>
+                  </tr>
+
+            </table>
+            <button ng-click="addStock()">Add Stock</button><button ng-click="writeStocks()">Update Stocks</button>
+            </uib-tab>
+            <uib-tab heading="Dash Buttons">
+                <br>
+            <table ng-repeat="button in dashButtons track by $index">
+                <tr>
+                    <td><label>Dash ID</label></td><td><input type="text" ng-model="dashButtons[$index].id" value="{{button.id}}"></td>
+                </tr>
+                <tr>
+                    <td><label>Type</label></td><td><input type="text" ng-model="dashButtons[$index].type" value="{{button.type}}"></td>
+                </tr>
+                <tr>
+                    <td><label>Box</label></td><td><input type="text" ng-model="dashButtons[$index].box" value="{{button.box}}"></td>
+                </tr>
+                <tr>
+                    <td><label>Zone (like kitchen, counter)</label></td><td><input type="text" ng-model="dashButtons[$index].zone" value="{{button.zone}}"></td>
+                </tr>
+                <tr><td><button ng-click="removeButton($index)">Remove Button</button></td></tr>
+
+            </table>
+            </br>
+            <button ng-click="addButton()">Add Button</button><button ng-click="writeButtons()">Update Dash Buttons</button>
+            </uib-tab>
+            <uib-tab heading="Light Boxes">
+            <br>
+            <table ng-repeat="light in lightBoxes track by $index">
+                <tr>
+                    <td><label>IP</label></td><td><input type="text" ng-model="lightBoxes[$index].box_ip" value="{{light.box_ip}}"></td>
+                </tr>
+                <tr>
+                    <td><label>Port</label></td><td><input type="text" ng-model="lightBoxes[$index].box_port" value="{{light.box_port}}"></td>
+                </tr>
+                <tr><td><button ng-click="removeLight($index)">Remove Light</button></td></tr>
+            </table>
+            </br>
+            <button ng-click="addLight()">Add Light</button><button ng-click="writeLights()">Update Lights</button>
+        </uib-tab>
+        <uib-tab heading="House">
+            <ul>
+                <li  ng-repeat="(key, room) in house">
+                    <img ng-click="key1 = !key1"class="folderImg"
+                         src="images/folder.png">&nbsp;<input type="text"  ng-mouseup="oldName = key" ng-model="key" ng-blur="changeKey(oldName, key)" >
+                    <ul ng-show="key1">
+                        <li ng-repeat="(zone, val) in room">
+                            <img ng-click="zone1 = !zone1" class="folderImg"
+                                 src="images/folder.png">&nbsp; <input type="text"  ng-click="oldName = zone"  ng-blur="changeKey(oldName, key, zone)"ng-model="zone">
+                            <ul ng-show="zone1">
+                                <li ng-repeat="(field, value) in val">
+                                            <input type="text" ng-click="oldname = field" ng-model="field">: <input type="text" ng-model="house[key][zone][field]">
+                                </li>
+                                <button ng-click="addField(key,zone)">Add Field</button>
+                            </ul>
+                        </li>
+                        <button ng-click="addZone(key)">Add Zone</button>
+                    </ul>
+                </li>
+            </ul>
+            <!--<br>-->
+            <!--<table ng-repeat="(key, room) in house">-->
+                <!--<tr>-->
+                  <!--<td><input type="text" ng-model="key" value="{{light.box_ip}}">-->
+                      <!--</td>-->
+                    <!--<td><button ng-click="removeField(key)">Remove Room</button></td></td>-->
+
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td >-->
+                    <!--<table ng-repeat="(obj, val) in room">-->
+                    <!--<tr>-->
+                        <!--<td><input style="margin-left:10px;" type="text" ng-model="obj" value="{{light.box_ip}}"></td>-->
+                        <!--<td><button ng-click="removeField(key,obj)">Remove Zone</button></td></td>-->
+
+                    <!--</tr>-->
+                        <!--<tr><td>-->
+                                <!--<table ng-repeat="(ob, value) in val">-->
+                                    <!--<tr>-->
+                                       <!--<td> <input style="margin-left:20px;" type="text" ng-model="ob" value="{{light.box_ip}}"></td>-->
+                                        <!--<td><input type="text" ng-model="value" value="{{light.box_ip}}"></td>-->
+                                        <!--<td><button ng-click="removeField(key,obj,ob)">Remove Field</button></td></td>-->
+                                    <!--</tr>-->
+                                    <!--</table>-->
+                                <!--<button ng-click="addField(key,obj)">Add Field</button>-->
+                            <!--</td></tr>-->
+                <!--</table>-->
+                        <!--<button ng-click="addZone(key)">Add Zone</button>-->
+                        <!--</br>-->
+                        <!--</br>-->
+                    <!--</td>-->
+                <!--</tr>-->
+            <!--</table>-->
+            <!--</br>-->
+            <button ng-click="addRoom()">Add Room</button><button ng-click="writeHouse()">Update House</button>
+        </uib-tab>
+        </uib-tabset>
+    </div>
+</div>
+</div>
+</body>
+</html>

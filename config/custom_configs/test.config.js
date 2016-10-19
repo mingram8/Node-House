@@ -1,0 +1,1 @@
+module.exports = {"gmail":"mingram9473@gmail.com","password":"Pass947*","androidId":"308CA8F9AB88F172"}

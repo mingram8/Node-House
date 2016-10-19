@@ -1,0 +1,1 @@
+cmd_Release/pcap_binding.node := ln -f "Release/obj.target/pcap_binding.node" "Release/pcap_binding.node" 2>/dev/null || (rm -rf "Release/pcap_binding.node" && cp -af "Release/obj.target/pcap_binding.node" "Release/pcap_binding.node")
